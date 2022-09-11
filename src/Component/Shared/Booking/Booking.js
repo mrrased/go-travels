@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import ItemsOne from '../../BookingItem/ItemOne/ItemsOne';
+import { Container } from '@mui/material';
 
 
 
@@ -39,11 +40,13 @@ function a11yProps(index) {
 const StyledTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }) => ({
   textTransform: 'none',
   minWidth: 0,
+  maxWidth: 'none',
   [theme.breakpoints.up('sm')]: {
     minWidth: 0,
+    
   },
   fontWeight: theme.typography.fontWeightRegular,
-  marginRight: theme.spacing(1),
+  // marginRight: theme.spacing(1),
   color: 'rgba(0, 0, 0, 0.85)',
   fontFamily: [
     '-apple-system',
@@ -80,9 +83,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }
   },
   '&.MuiButtonBase-root':{
     marginRight: '0px',
-    paddingLeft: '100px',
-    paddingRight: '100px',
-    color: 'white',
+    
     textTransform: 'uppercase',
     fontWeight: '600',
     display: 'flex',
@@ -90,6 +91,11 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }
     justifyContent: 'center',
     fontSize: '15px',
     transition: '.3s linear',
+    color: 'white',
+    letterSpacing: '1px',
+  },
+  '&.css-imwx6x-MuiButtonBase-root-MuiTab-root':{
+    maxWidth: 'none'
   },
   
 }));
@@ -136,12 +142,12 @@ const Booking = () => {
 
 
     return (
-      <div className='flex justify-center bg-amber-50  rounded-tr-3xl rounded-tl-3xl'>
+      <div  className='flex justify-center mx-auto bg-amber-50  rounded-tr-3xl rounded-tl-3xl'>
       <div>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs
           // disable the tab indicator because it doesn't work well with wrapped container
-          TabIndicatorProps={{ sx: { display: 'none' , color: 'black'} }}
+          TabIndicatorProps={{ sx: { display: 'none' } }}
           sx={{
             '& .MuiTabs-flexContainer': {
               flexWrap: 'wrap',
@@ -149,17 +155,20 @@ const Booking = () => {
               textAlign: 'center',
               borderTopRightRadius: '20px',
               borderTopLeftRadius: '20px',
+
             },
+            '& button.Mui-selected':{
+              color: '#622243',
+            }
           }}
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
-          textColor="secondary"
         >
-          <StyledTab label="Air Booking"  {...a11yProps(0)}/>
-          <StyledTab label="My Trips" {...a11yProps(1)}/>
-          <StyledTab label="Check-In" {...a11yProps(2)}/>
-          <StyledTab label="Flight Status"  {...a11yProps(3)}/>
+          <StyledTab className='w-full sm:w-full md:w-1/4 lg:w-1/4 xl:w-72' label="Air Booking"  {...a11yProps(0)}/>
+          <StyledTab className='w-full sm:w-full md:w-1/4 lg:w-1/4 xl:w-72' label="My Trips" {...a11yProps(1)}/>
+          <StyledTab className='w-full sm:w-full md:w-1/4 lg:w-1/4 xl:w-72' label="Check-In" {...a11yProps(2)}/>
+          <StyledTab className='w-full sm:w-full md:w-1/4 lg:w-1/4 xl:w-72' label="Flight Status"  {...a11yProps(3)}/>
         </Tabs>
       </Box>
       <ItemTab value={value} index={0}>

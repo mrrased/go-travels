@@ -4,6 +4,8 @@ import ShowFeatureItem from './ShowFeatureItem';
 import Container from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComments , faPlaneDeparture} from '@fortawesome/free-solid-svg-icons';
+import { faArrowRotateLeft, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 
 // const StyleIcon = styled((props)=><QuestionAnswerOutlinedIcon {...props} />)(({ theme }) => ({
 //     // width: 300,
@@ -29,19 +31,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Features = [
     {
         id: 1,
-        img:<FontAwesomeIcon icon="fa-regular fa-comments" />,
+        img:<FontAwesomeIcon icon={faComments} size="3x" />,
         title: 'We are now available',
         contact: 'Call +1 555 666 888 for contuct with us'
     },
     {
         id: 2,
-        img:<QuestionAnswerOutlinedIcon sx={{ fontSize: 40}} />,
+        img:<FontAwesomeIcon icon={faPlaneDeparture} size="3x" />,
         title: 'International Flight',
         contact: 'Call +1 555 666 888 for booking assistance'
     },
     {
         id: 3,
-        img:<QuestionAnswerOutlinedIcon />,
+        img:<FontAwesomeIcon icon={faArrowRotateLeft} size="3x" />,
         title: 'Check Refund',
         contact: 'Call +1 555 666 888 for contuct with us'
     },
@@ -50,7 +52,7 @@ const Features = [
 const FeaturesArea = () => {
     return (
             <Container maxWidth="lg" className='mt-16 pb-16'>
-            <div className='grid gap-4 grid-cols-1 grid-rows-3 md:grid-cols-3 md:grid-rows-1 '>
+            <div className='grid gap-4 grid-cols-1 grid-rows-3 sm:grid-none sm:w-full md:grid-cols-3 md:grid-rows-1 '>
             {
                Features.map(FeatureItem =><ShowFeatureItem key={FeatureItem.id} FeatureItem={FeatureItem} />) 
             }

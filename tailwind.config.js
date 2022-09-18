@@ -6,7 +6,7 @@ module.exports = {
       'tablet': '640px',
       // => @media (min-width: 640px) { ... }
       'sm': '640px',
-      'md': '768px',
+      'md': '769px',
       'laptop': '1024px',
       // => @media (min-width: 1024px) { ... }
       'lg': '1024px',
@@ -21,6 +21,14 @@ module.exports = {
         'pink-black': '#21283f',
         'pink-yellow': '#ffa903',
         'smooth-black': '#21283f',
+        'smooth-yellow': '#ffa903',
+        'smooth-gray': '#606575',
+        'smooth-gray-50': '#e7e8eb',
+        'smooth-pink': '#ca96b1',
+        'smooth-gray-100': '#606575',
+        'smooth-yellow-100': '#cd7e0f',
+        'smooth-gray-150': '#eae8e8',
+        'smooth-yellow-150': '#ffa903',
       },
     },
   },

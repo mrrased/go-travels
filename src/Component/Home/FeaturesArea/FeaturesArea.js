@@ -1,11 +1,9 @@
 import React from 'react';
-import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 import ShowFeatureItem from './ShowFeatureItem';
 import Container from '@mui/material/Container';
-import { styled } from '@mui/material/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments , faPlaneDeparture} from '@fortawesome/free-solid-svg-icons';
-import { faArrowRotateLeft, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
 // const StyleIcon = styled((props)=><QuestionAnswerOutlinedIcon {...props} />)(({ theme }) => ({
 //     // width: 300,

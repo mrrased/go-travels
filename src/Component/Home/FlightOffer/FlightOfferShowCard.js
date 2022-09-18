@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarDays, faCar, faUser, faCircleDot} from '@fortawesome/free-solid-svg-icons';
 
 const FlightOfferShowCard = ({offerItem}) => {
 

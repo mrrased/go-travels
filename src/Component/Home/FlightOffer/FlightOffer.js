@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container } from '@mui/material';
+import {  Container } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import img1 from '../../../Images/offer-1.jpg';
 import img2 from '../../../Images/offer-2.jpg';

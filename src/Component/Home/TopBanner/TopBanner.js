@@ -1,14 +1,12 @@
-import React , { useEffect, useRef }  from 'react';
+import React   from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import anime from "animejs/lib/anime.es.js"
 
 
 import Slider from "react-slick";
 import img1 from '../../../Images/1.jpg';
 import img2 from '../../../Images/2.jpg';
 import img3 from '../../../Images/3.jpg';
-import ShowImage from './ShowImage';
 
 
 const ImageItem = [
@@ -34,7 +32,7 @@ const ImageItem = [
 
 const TopBanner = () => {
 
-    const TextAnimation = useRef(null);
+    // const TextAnimation = useRef(null);
 
     // useEffect(()=>{
     //     SlideText();

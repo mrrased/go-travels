@@ -17,9 +17,9 @@ const ShowImage = ({item}) => {
     // console.log(item)
     
     return (
-        <div className=''>
-           <img className='w-full aspect-video mix-blend-overlay' src={item.img} alt="" /> 
-           <div className='absolute top-10  border-2 border-indigo-600 animate__animated animate__bounce' >
+        <div className='relative'>
+           <img className=' w-full aspect-video mix-blend-overlay' src={item.img} alt="" /> 
+           <div className='absolute  top-10  border-2 border-indigo-600 animate__animated animate__bounce' >
                 <p>{item.title}</p>
                 <div className=' text-center text-xl p-2 m-2 md:text-5xl font-bold font-sans'>{item.title}</div>
                 <div className=' text-center p-2 m-2 text-base'>{item.title}</div>

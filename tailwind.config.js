@@ -29,6 +29,8 @@ module.exports = {
         'smooth-yellow-100': '#cd7e0f',
         'smooth-gray-150': '#eae8e8',
         'smooth-yellow-150': '#ffa903',
+        'pink-black-100': '#232b38',
+        'smooth-gray-200': '#cecece',
       },
     },
   },

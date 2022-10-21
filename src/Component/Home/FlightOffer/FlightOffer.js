@@ -66,7 +66,7 @@ const FlightOffer = () => {
                     <h3 className='text-4xl	text-smooth-black font-bold'>Flight Offer Deals</h3>
                 </div>
                 <div className='text-center md:flex md:items-center md:justify-end text-pink-blue'>
-                        <a className='text-base font-bold' href="#">Best Price Guarantee</a>
+                        <a className='text-base font-bold' href="*#">Best Price Guarantee</a>
                         <span className='flex justify-center mt-2 md:flex md:items-center md:mt-0'><CheckCircleIcon fontSize="small" className='ring-offset-2 ring-2 rounded-full ml-2 ring-pink-blue' /></span>
                 </div>
             </div>

@@ -1,9 +1,14 @@
 import React from 'react';
+import ApprovedCard from './ApproveCard/ApprovedCard';
+import TotalViewArea from './TotalViewArea/TotalViewArea';
+import Banner from './Banner';
 
 const DashboardHome = () => {
     return (
         <div>
-            <h1>This is a Dashboard Home Page</h1>
+            <Banner />
+            <TotalViewArea />
+            <ApprovedCard />
         </div>
     );
 };

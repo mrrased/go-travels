@@ -31,6 +31,7 @@ module.exports = {
         'smooth-yellow-150': '#ffa903',
         'pink-black-100': '#232b38',
         'smooth-gray-200': '#cecece',
+        
       },
     },
   },

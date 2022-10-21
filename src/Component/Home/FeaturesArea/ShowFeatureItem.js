@@ -10,7 +10,7 @@ const ShowFeatureItem = ({FeatureItem}) => {
                     {FeatureItem.img}
                 </div>
                 <div className="pl-4">
-                    <a href="#" className="block mt-0 text-xl leading-tight font-semibold font-sans  text-pink-black hover:underline mb-1">{FeatureItem.title}</a>
+                    <a href="*#" className="block mt-0 text-xl leading-tight font-semibold font-sans  text-pink-black hover:underline mb-1">{FeatureItem.title}</a>
                     <p className="mt-0 text-slate-500">{FeatureItem.contact}</p>
                 </div>
             </div>

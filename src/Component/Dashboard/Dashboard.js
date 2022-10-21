@@ -14,12 +14,19 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import HomeIcon from '@mui/icons-material/Home';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import SettingsIcon from '@mui/icons-material/Settings';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import UpdateIcon from '@mui/icons-material/Update';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useNavigate , Outlet } from 'react-router-dom';
 
 
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const Dashboard = (props) => {
 
@@ -35,27 +42,42 @@ const Dashboard = (props) => {
   const itemsList = [
     {
         text: 'Dashboard',
-        icon: <HomeIcon />,
+        icon: <DashboardIcon />,
         onClick: () => navigate('/dashboard')
     },
     {
         text: 'Booking',
-        icon: <HomeIcon />,
+        icon: <AddShoppingCartIcon />,
         onClick: () => navigate('/dashboard/booking')
     },
     {
-        text: 'Profile',
-        icon: <HomeIcon />,
+        text: 'Service',
+        icon: <AddCircleOutlineIcon />,
         onClick: () => navigate('/dashboard/profile')
     },
     {
-        text: 'Reviews',
-        icon: <HomeIcon />,
+        text: 'Employee',
+        icon: <PersonAddAltIcon />,
+        onClick: () => navigate('/dashboard/settings')
+    },
+    {
+        text: 'Update',
+        icon: <UpdateIcon />,
         onClick: () => navigate('/dashboard/reviews')
     },
     {
+        text: 'Info',
+        icon: <InfoOutlinedIcon />,
+        onClick: () => navigate('/dashboard/settings')
+    },
+    {
         text: 'Settings',
-        icon: <HomeIcon />,
+        icon: <SettingsIcon />,
+        onClick: () => navigate('/dashboard/settings')
+    },
+    {
+        text: 'Logout',
+        icon: <PowerSettingsNewIcon sx={{color: 'red'}} />,
         onClick: () => navigate('/dashboard/settings')
     },
   ]
@@ -68,10 +90,10 @@ const Dashboard = (props) => {
         {itemsList.map((list) => (
           <ListItem key={list.text} disablePadding>
             <ListItemButton onClick={list.onClick}>
-              <ListItemIcon>
+              <ListItemIcon sx={{ justifyContent: 'center', color: '#622243' }}>
                 {list.icon}
               </ListItemIcon>
-              <ListItemText primary={list.text} />
+              <ListItemText primary={list.text} sx={{':hover': 'underline'}} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -140,11 +162,11 @@ const Dashboard = (props) => {
       </Box>
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+        sx={{ flexGrow: 1, display: {sm:{ p: 'none'}}, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar sx={{display: { sm: 'none' }}} />
         <Outlet />
-        <Typography paragraph>
+        {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
           enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
@@ -224,7 +246,7 @@ const Dashboard = (props) => {
           tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        </Typography> */}
       </Box>
     </Box>
   );

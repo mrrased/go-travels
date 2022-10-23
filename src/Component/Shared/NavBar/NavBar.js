@@ -9,7 +9,7 @@ const NavBar = () => {
         <div className='absolute w-full z-10'>
             <div className='flex items-center sm:justify-between mx-5'>
                 <div>
-                    001
+                    <h3 className='text-white'>Go travel</h3>
                 </div>
                 <div className='hidden md:flex space-x-4 text-base font-semibold capitalize font-sans'>
 

@@ -11,30 +11,33 @@ import Register from './Component/Form/Register/Register';
 import Home from './Component/Home/Home';
 import About from './Component/Pages/About/About';
 import Contact from './Component/Pages/Contact/Contact';
+import AuthProvider from './Hooks/AuthProvider';
 
 function App() {
   return (
     <div className='bg-amber-50'>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home />} /> 
-          <Route path='/about' element={<About />} /> 
-          <Route path='/contact' element={<Contact />} /> 
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Home />} /> 
+            <Route path='/about' element={<About />} /> 
+            <Route path='/contact' element={<Contact />} /> 
 
-          <Route path='/dashboard' element={<Dashboard />}>
+            <Route path='/dashboard' element={<Dashboard />}>
 
-            <Route path='/dashboard' element={<DashboardHome />} />
-            <Route path='/dashboard/booking' element={<DashBooking />} />
-            <Route path='/dashboard/profile' element={<ProfileItem />} />
-            <Route path='/dashboard/reviews' element={<ReviewsItem />} />
-            <Route path='/dashboard/settings' element={<SettingsSide />} />
+              <Route path='/dashboard' element={<DashboardHome />} />
+              <Route path='/dashboard/booking' element={<DashBooking />} />
+              <Route path='/dashboard/profile' element={<ProfileItem />} />
+              <Route path='/dashboard/reviews' element={<ReviewsItem />} />
+              <Route path='/dashboard/settings' element={<SettingsSide />} />
 
-          </Route> 
+            </Route> 
 
-          <Route path='/login' element={<Login />} /> 
-          <Route path='/register' element={<Register />} /> 
-        </Routes>
-      </BrowserRouter>
+            <Route path='/login' element={<Login />} /> 
+            <Route path='/register' element={<Register />} /> 
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }

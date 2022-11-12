@@ -12,6 +12,7 @@ import Home from './Component/Home/Home';
 import About from './Component/Pages/About/About';
 import Contact from './Component/Pages/Contact/Contact';
 import AuthProvider from './Hooks/AuthProvider';
+import { SnackbarProvider } from 'notistack';
 
 function App() {
   return (
@@ -32,8 +33,9 @@ function App() {
               <Route path='/dashboard/settings' element={<SettingsSide />} />
 
             </Route> 
-
-            <Route path='/login' element={<Login />} /> 
+            
+              <Route path='/login' element={<SnackbarProvider maxSnack={3}><Login /></SnackbarProvider>} /> 
+            
             <Route path='/register' element={<Register />} /> 
           </Routes>
         </BrowserRouter>

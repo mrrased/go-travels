@@ -32,20 +32,16 @@ const useFirebase = () => {
         });
     };
 
-    const googleSignUp = (email, password, name) =>{
+    const SignWithGoogle = (email, password, name) =>{
 
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // Signed in 
             const newUser = {email, displayName:name}
-
             setUser(newUser)
         })
         .catch((error) => {
             const errorMessage = error.message;
-
             console.log(errorMessage);
-            // ..
         });
     };
 
@@ -54,14 +50,10 @@ const useFirebase = () => {
 
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // Signed in 
             const user = userCredential.user;
-            // ...
-
             console.log(user)
         })
         .catch((error) => {
-
             const errorMessage = error.message;
             console.log(errorMessage);
         });
@@ -72,7 +64,7 @@ const useFirebase = () => {
         user,
         err,
         googleSignIn,
-        googleSignUp,
+        SignWithGoogle,
         SignInWithPassword
 
     }

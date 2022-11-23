@@ -37,7 +37,8 @@ const useFirebase = () => {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const newUser = {email, displayName:name}
-            setUser(newUser)
+            setUser(newUser);
+            middleFunc(email, name, 'POST');
         })
         .catch((error) => {
             const errorMessage = error.message;
@@ -57,6 +58,20 @@ const useFirebase = () => {
             const errorMessage = error.message;
             console.log(errorMessage);
         });
+
+    }
+
+    const middleFunc = (email, displayName, method) =>{
+
+        const users = {email, displayName};
+        
+        fetch('http://localhost:5000/users',{
+            method: method,
+            headers:{
+                'content-type':'application/json'
+            },
+            body: JSON.stringify(users)
+        }).then()
 
     }
 

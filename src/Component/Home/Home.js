@@ -7,12 +7,12 @@ import FeaturesArea from './FeaturesArea/FeaturesArea';
 import FlightDestination from './FlightDestination/FlightDestination';
 import FlightDestinationArea from './FlightDestinationArea/FlightDestinationArea';
 import FlightOffer from './FlightOffer/FlightOffer';
-import Ice from './Ice';
 import NewsArea from './NewsArea/NewsArea';
 import ServiceArea from './ServiceArea/ServiceArea';
 import TopBanner from './TopBanner/TopBanner';
 
 const Home = () => {
+    
     return (
         <div>
             <TopBar />

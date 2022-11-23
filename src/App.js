@@ -11,8 +11,8 @@ import Register from './Component/Form/Register/Register';
 import Home from './Component/Home/Home';
 import About from './Component/Pages/About/About';
 import Contact from './Component/Pages/Contact/Contact';
+import BookingList from './Component/Pages/Pages/BookingList/BookingList';
 import AuthProvider from './Hooks/AuthProvider';
-import { SnackbarProvider } from 'notistack';
 
 function App() {
   return (
@@ -34,9 +34,10 @@ function App() {
 
             </Route> 
             
-              <Route path='/login' element={<SnackbarProvider maxSnack={3}><Login /></SnackbarProvider>} /> 
-            
-            <Route path='/register' element={<Register />} /> 
+            <Route path='/booking-list' element={<BookingList />} /> 
+            <Route path='/login' element={<Login />} /> 
+            <Route path='/register' element={<Register />} />
+
           </Routes>
         </BrowserRouter>
       </AuthProvider>

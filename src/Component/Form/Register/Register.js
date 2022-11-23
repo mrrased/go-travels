@@ -20,7 +20,7 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    const { googleSignUp } = useAuth();
+    const { SignWithGoogle } = useAuth();
     
     // const { enqueueSnackbar } = useSnackbar();
     
@@ -77,7 +77,7 @@ const Register = () => {
         }
         else if(password?.length >= 1 && password.length <= 8){
             setIsCon(false);
-            console.log(isCon);
+            // console.log(isCon);
         }
 
         
@@ -121,7 +121,7 @@ const Register = () => {
                 alert('Do Not password Match');
                 return;
             }
-            googleSignUp( email, matchSuccess, name);
+            SignWithGoogle( email, matchSuccess, name);
         }
 
     };

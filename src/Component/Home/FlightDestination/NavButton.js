@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComments , faPlaneDeparture, faCar, faTaxi, faCircleDot} from '@fortawesome/free-solid-svg-icons';
-import { faArrowRotateLeft } from '@fortawesome/free-solid-svg-icons';
-import { set } from 'animejs';
+import { faPlaneDeparture, faCar, faTaxi, faCircleDot} from '@fortawesome/free-solid-svg-icons';
+// import { faArrowRotateLeft } from '@fortawesome/free-solid-svg-icons';
+// import { set } from 'animejs';
 
 const NavButton = ({services, setFiltered, activeData, setActiveData}) => {
 
@@ -19,7 +19,7 @@ useEffect(()=>{
         const serviceItems = services.filter(item => item.type.includes(activeData))
         setFiltered(serviceItems);
 
-},[activeData])
+},[activeData, services, setFiltered])
 
     return (
         <div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from '@mui/system';
 import ShowBookingFlight from './ShowBookingFlight';
+import BookingListFilter from '../../BookingListFilter/BookingListFilter';
 
 
 const flightList = [
@@ -55,9 +56,9 @@ const BookingFlight = () => {
 
     return (
         <Container maxWidth="lg" className="py-20">
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
                 <div>
-                    <h1>This is a Left Side</h1>
+                    <BookingListFilter />
                 </div>
                 <div className='col-span-2'>
                     {

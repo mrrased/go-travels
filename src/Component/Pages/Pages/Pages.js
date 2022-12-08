@@ -73,7 +73,7 @@ const Pages = ({setOpen, open, anchorRef}) => {
                     onKeyDown={handleListKeyDown}
                   >
                     <MenuItem onClick={handleClose}><NavLink to="/booking-list">Booking List</NavLink> </MenuItem>
-                    <MenuItem onClick={handleClose}>Booking Details</MenuItem>
+                    <MenuItem onClick={handleClose}><NavLink to="/booking-details">Booking Details</NavLink></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

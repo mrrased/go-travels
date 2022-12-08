@@ -18,6 +18,7 @@ module.exports = {
     extend: {
       colors: {
         'pink-blue': '#622243',
+        'pink-blue-50': '#57112f',
         'pink-black': '#21283f',
         'pink-yellow': '#ffa903',
         'smooth-black': '#21283f',

@@ -11,6 +11,7 @@ import Register from './Component/Form/Register/Register';
 import Home from './Component/Home/Home';
 import About from './Component/Pages/About/About';
 import Contact from './Component/Pages/Contact/Contact';
+import BookingDetails from './Component/Pages/Pages/BookingDetails/BookingDetails';
 import BookingList from './Component/Pages/Pages/BookingList/BookingList';
 import AuthProvider from './Hooks/AuthProvider';
 
@@ -35,6 +36,7 @@ function App() {
             </Route> 
             
             <Route path='/booking-list' element={<BookingList />} /> 
+            <Route path='/booking-details' element={<BookingDetails />} /> 
             <Route path='/login' element={<Login />} /> 
             <Route path='/register' element={<Register />} />
 

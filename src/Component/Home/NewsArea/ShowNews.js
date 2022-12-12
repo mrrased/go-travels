@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarDays, faCar, faUser, faCircleDot} from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDays, faUser} from '@fortawesome/free-solid-svg-icons';
 
 const ShowNews = ({newsItem}) => {
     return (
@@ -19,7 +19,7 @@ const ShowNews = ({newsItem}) => {
                                 <h3 className="mt-2 text-slate-500"><span><FontAwesomeIcon icon={faCalendarDays} size="lg" className='mr-1 sm:ml-3 text-smooth-gray-50' /></span>{newsItem.date}</h3>
                             </div>
                         </div>
-                        <a href="#" className="block mt-3 text-center md:text-left sm:mt-1  text-sm sm:text-lg leading-tight  font-medium text-black hover:underline">{newsItem.title}</a>
+                        <a href="#*" className="block mt-3 text-center md:text-left sm:mt-1  text-sm sm:text-lg leading-tight  font-medium text-black hover:underline">{newsItem.title}</a>
                     </div>
                 </div>
             </div>

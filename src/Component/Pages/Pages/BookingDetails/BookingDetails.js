@@ -13,7 +13,7 @@ const BookingDetails = () => {
             <BookingDetailsBanner />
             <CustomerStep />
             <PassengerInfo />
-        </div>
+      </div>
     );
 };
 

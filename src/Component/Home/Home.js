@@ -1,8 +1,10 @@
 import React from 'react';
 import TopBookingArea from '../BookingItem/ItemOne/TopBookingArea';
 import Booking from '../Shared/Booking/Booking';
+import BottomFooter from '../Shared/BottomFooter/BottomFooter';
 import NavBar from '../Shared/NavBar/NavBar';
 import TopBar from '../Shared/TopBar/TopBar';
+import TopFooter from '../Shared/TopFooter/TopFooter';
 import FeaturesArea from './FeaturesArea/FeaturesArea';
 import FlightDestination from './FlightDestination/FlightDestination';
 import FlightDestinationArea from './FlightDestinationArea/FlightDestinationArea';
@@ -26,6 +28,8 @@ const Home = () => {
             <FlightDestination />
             <ServiceArea />
             <NewsArea />
+            <TopFooter />
+            <BottomFooter />
         </div>
     );
 };

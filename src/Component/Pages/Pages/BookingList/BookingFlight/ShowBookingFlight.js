@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import 'tw-elements';
+import { NavLink } from 'react-router-dom';
 
 const ShowBookingFlight = ({list}) => {
     // console.log(list);
@@ -38,7 +39,7 @@ const ShowBookingFlight = ({list}) => {
                 <div className='flex items-center justify-center'>
                     <div className='text-center'>
                         <h1 className='text-pink-blue text-lg font-semibold mb-2 '>US$ {price}</h1>
-                        <button className='px-8 py-2 bg-smooth-yellow-150 text-black font-semibold text-lg capitalize rounded-[3px]'>Select <FontAwesomeIcon icon={faPlaneDeparture} size="sm" className='ml-1 text-pink-blue' /></button>
+                        <NavLink to='/booking-details' className='px-8 py-2 bg-smooth-yellow-150 text-black font-semibold text-lg capitalize rounded-[3px] '>Select <FontAwesomeIcon icon={faPlaneDeparture} size="sm" className='ml-1 text-pink-blue' /></NavLink>
                     </div>
                 </div>
             </div>

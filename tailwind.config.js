@@ -33,6 +33,7 @@ module.exports = {
         'pink-black-100': '#232b38',
         'smooth-gray-200': '#cecece',
         'smooth-gray-10': '#e1e1e1',
+        'smooth-gray-20': '#f2f2f2'
         
       },
     },

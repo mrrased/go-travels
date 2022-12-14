@@ -10,7 +10,7 @@ const About = () => {
             <TopBar />
             <NavBar />
             <AboutBanner />
-            {/* <AboutOffer /> */}
+            <AboutOffer />
         </div>
     );
 };

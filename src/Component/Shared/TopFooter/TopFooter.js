@@ -12,8 +12,8 @@ const TopFooter = () => {
     return (
         <div className='top-footer'>
             <Container maxWidth='lg' className='py-20'>
-                <div className='grid grid-cols-4 gap-6'>
-                    <div>
+                <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
+                    <div className='text-center md:text-left'>
                         <div className='flex items-center mb-[30px]'>
                             <FontAwesomeIcon icon={faPlane} size="2xl" className='mr-4 text-pink-black bg-smooth-yellow-150 p-2 rounded-full' />
                             <h1 className='text-4xl text-smooth-gray-20 font-bold'>Go-Travel</h1>
@@ -29,31 +29,31 @@ const TopFooter = () => {
                             <LinkedInIcon fontSize="large" className='text-smooth-gray-10 bg-black rounded-full p-2 hover:text-smooth-yellow-150 cursor-pointer transition-all' />
                         </div>
                     </div>
-                    <div>
+                    <div className='text-center md:text-left'>
                         <div className='mb-[30px]'>
                             <h3 className='text-[22px] text-smooth-gray-20 font-semibold'>Explore</h3>
                         </div>
                         <div className='text-smooth-gray-200 text-base cursor-pointer space-y-[10px] font-medium tracking-wide'>
-                            <p>About</p>
-                            <p>Awards</p>
-                            <p>Careers</p>
-                            <p>Press release</p>
-                            <p>Sponsorship</p>
+                            <p className='hover:text-smooth-yellow transition hover:translate-x-2 duration-500'>About</p>
+                            <p className='hover:text-smooth-yellow transition hover:translate-x-2 duration-500'>Awards</p>
+                            <p className='hover:text-smooth-yellow transition hover:translate-x-2 duration-500'>Careers</p>
+                            <p className='hover:text-smooth-yellow transition hover:translate-x-2 duration-500'>Press release</p>
+                            <p className='hover:text-smooth-yellow transition hover:translate-x-2 duration-500'>Sponsorship</p>
                         </div>
                     </div>
-                    <div>
+                    <div className='text-center md:text-left'>
                     <div className='mb-[30px]'>
                             <h3 className='text-[22px] text-smooth-gray-20 font-semibold'>Privacy</h3>
                         </div>
                         <div className='text-smooth-gray-200 text-base cursor-pointer space-y-[10px] font-medium tracking-wide'>
-                            <p>Airline fees</p>
-                            <p>Airline guides</p>
-                            <p>Airport guides</p>
-                            <p>Low fare tips</p>
-                            <p>Flights</p>
+                            <p className='hover:text-smooth-yellow transition hover:translate-x-2 duration-500'>Airline fees</p>
+                            <p className='hover:text-smooth-yellow transition hover:translate-x-2 duration-500'>Airline guides</p>
+                            <p className='hover:text-smooth-yellow transition hover:translate-x-2 duration-500'>Airport guides</p>
+                            <p className='hover:text-smooth-yellow transition hover:translate-x-2 duration-500'>Low fare tips</p>
+                            <p className='hover:text-smooth-yellow transition hover:translate-x-2 duration-500'>Flights</p>
                         </div>
                     </div>
-                    <div>
+                    <div className='text-center md:text-left'>
                         <div className='mb-[30px]'>
                             <h3 className='text-[22px] text-smooth-gray-20 font-semibold'>Contacts</h3>
                         </div>
@@ -62,7 +62,7 @@ const TopFooter = () => {
                             <p className='text-smooth-yellow-150 text-[26px] font-semibold mb-2'>+880 1732 920 - 164</p>
                             <p className='text-smooth-yellow-100 text-base mb-[25px]'>gotravel@company.com</p>
                         </div>
-                        <form className='flex'>
+                        <form className='flex justify-center'>
                             <input type="email" placeholder='Enter Your Email' className='p-3' />
                             <button type='submit' className='px-4 py-3 bg-smooth-yellow-150' ><FontAwesomeIcon icon={faPaperPlane} size="lg" className='text-white' /></button>
                         </form>

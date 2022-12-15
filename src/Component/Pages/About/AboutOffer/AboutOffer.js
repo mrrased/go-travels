@@ -1,6 +1,8 @@
 import { Container } from '@mui/material';
 import React from 'react';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import about_img1 from '../../../../Images/about_1.jpg';
+import about_img2 from '../../../../Images/about_2.jpg';
 
 const AboutOffer = () => {
     return (
@@ -34,7 +36,11 @@ const AboutOffer = () => {
                     </div>
                 </div>
                 <div className='col-span-7'>
-                    02
+                    <div className='relative'>
+                        <img src={about_img1} alt="" className='absolute' />
+                        <div className="content:[''] absolute w-[444px] h-[459px] border-[10px] border-smooth-yellow -top-10 right-12"></div>
+                        <img src={about_img2} alt=""  className='absolute -top-20 right-0' />
+                    </div>
                 </div>
             </div>
         </Container>

@@ -7,7 +7,7 @@ import about_img2 from '../../../../Images/about_2.jpg';
 const AboutOffer = () => {
     return (
         <Container  maxWidth='lg' className='py-44 px-0'>
-            <div className='grid grid-cols-12 gap-4'>
+            <div className='grid grid-cols-1 md:grid-cols-12 gap-4'>
                 <div className='col-span-5'>
                     <div>
                         <h2 className='text-sm uppercase text-smooth-yellow-150 font-semibold mb-1 tracking-widest'>who we are</h2>

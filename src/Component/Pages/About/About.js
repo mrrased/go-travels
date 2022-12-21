@@ -6,6 +6,8 @@ import AboutOffer from './AboutOffer/AboutOffer';
 import FlightDestinationArea from '../../Home/FlightDestinationArea/FlightDestinationArea';
 import ServiceArea from '../../Home/ServiceArea/ServiceArea';
 import AboutAsked from './AboutAsked/AboutAsked';
+import TopFooter from '../../Shared/TopFooter/TopFooter';
+import BottomFooter from '../../Shared/BottomFooter/BottomFooter';
 
 const About = () => {
     return (
@@ -17,6 +19,8 @@ const About = () => {
             <FlightDestinationArea />
             <ServiceArea  />
             <AboutAsked />
+            <TopFooter />
+            <BottomFooter />
         </div>
     );
 };

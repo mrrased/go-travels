@@ -21,7 +21,13 @@ const ContactForm = () => {
                         <div className='mt-3'>
                             <textarea rows="6" placeholder='Message' required className='p-4 w-full border border-smooth-gray-50 transition ease-in-out delay-250 duration-500 focus:outline-none focus:border focus:border-smooth-yellow-100' />
                         </div>
-                        <button type="submit" className='px-6 py-3 text-white bg-smooth-yellow-150 hover:bg-white hover:text-pink-blue-50 hover:border hover:border-pink-blue-50 font-semibold uppercase tracking-wider transition-all '>Submit</button>
+                        {/* <button type="submit" className='px-6 py-3 text-white bg-smooth-yellow-150 hover:bg-white hover:text-pink-blue-50 hover:border hover:border-pink-blue-50 font-semibold uppercase tracking-wider transition-all '>Submit</button> */}
+                        <div className='flex justify-center md:justify-start'>
+                        <button class="group relative h-12 w-48 overflow-hidden border border-smooth-yellow rounded-lg bg-white text-lg font-semibold shadow">
+                            <div class="absolute inset-0 w-0 bg-smooth-yellow-100 transition-all duration-500 ease-out group-hover:w-full"></div>
+                            <span class="relative text-black group-hover:text-white uppercase">Submit Now</span>
+                        </button>
+                    </div>
                     </form>
                 </div>
         </Container>

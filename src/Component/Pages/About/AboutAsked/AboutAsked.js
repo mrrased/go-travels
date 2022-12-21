@@ -12,15 +12,15 @@ const AboutAsked = () => {
                 <div className='col-span-6'>
                     <div>
                         <h3 className='text-sm uppercase text-smooth-yellow-150 font-semibold mb-1 tracking-widest'>Asked Question</h3>
-                        <h1 className='text-4xl font-bold text-smooth-black mb-3'>Flight Asked Question</h1>
+                        <h1 className='text-xl md:text-4xl font-bold text-smooth-black mb-3'>Flight Asked Question</h1>
                         <p className='mb-7 font-base'>Lorem ipsum dolor sit amet, consectetur adipiscing elitIn imperdiet interdum imperdiet ipsum.</p>
                     </div>
 
-                    <div className='flex sm:justify-center'>
-                        <div className='w-full overflow-hidden mb-5 h-screen block  border-box md:hidden text-center'>
+                    <div className='flex justify-center mb-4'>
+                        <div className='w-full overflow-hidden h-[340px] block  border-box md:hidden text-center'>
                             <div className='relative'>
                                 <img src={about_askedImg} alt="" className='absolute z-10' />
-                                <div className="content:[''] absolute bg-smooth-yellow md:w-[465px] md:h-[470px]  sm:w-[560px]  sm:h-[360px] top-3 left-6 z-0">02</div>
+                                {/* <div className="content:[''] absolute bg-smooth-yellow md:w-[465px] md:h-[470px]  sm:w-[560px]  sm:h-[360px] top-3 left-6 z-0">02</div> */}
                             </div>
                         </div>
                     </div>

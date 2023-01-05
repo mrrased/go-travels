@@ -53,12 +53,12 @@ const Dashboard = (props) => {
     {
         text: 'Service',
         icon: <AddCircleOutlineIcon />,
-        onClick: () => navigate('/dashboard/profile')
+        onClick: () => navigate('/dashboard/service')
     },
     {
         text: 'Employee',
         icon: <PersonAddAltIcon />,
-        onClick: () => navigate('/dashboard/settings')
+        onClick: () => navigate('/dashboard/employee')
     },
     {
         text: 'Update',

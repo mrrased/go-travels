@@ -2,12 +2,13 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import 'tw-elements';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const ShowBookingFlight = ({list}) => {
     // console.log(list);
-    const {planeName, date, month, time, area, hour, stops, Operate, price, nextDay, nextDate, nextTime, airport, nextFlightAirPortName, tpm, passengerClass, flightNumber, airPlaneNumber, weight} = list;
+    const {planeName, date, month, time, area, hour, stops, Operate, price, nextDay, nextDate, nextTime, airport, nextFlightAirPortName, tpm, passengerClass, flightNumber, airPlaneNumber, weight, key} = list;
 
+    const navigate = useNavigate();
     return (
         <div className="grid grid-cols-1 divide-y divide-dashed divide-gray-600 p-2 sm:p-9 bg-white my-6 drop-shadow-lg">
             <div className="grid grid-cols-1 sm:grid-cols-4 sm:divide-x sm:divide-dashed sm:divide-gray-600 mb-6">
@@ -39,7 +40,7 @@ const ShowBookingFlight = ({list}) => {
                 <div className='flex items-center justify-center'>
                     <div className='text-center'>
                         <h1 className='text-pink-blue text-lg font-semibold mb-2 '>US$ {price}</h1>
-                        <NavLink to='/booking-details' className='px-8 py-2 bg-smooth-yellow-150 text-black font-semibold text-lg capitalize rounded-[3px] '>Select <FontAwesomeIcon icon={faPlaneDeparture} size="sm" className='ml-1 text-pink-blue' /></NavLink>
+                        <button onClick={(e)=>navigate(`/booking-details/${key}`)} to='/booking-details' className='px-8 py-2 bg-smooth-yellow-150 text-black font-semibold text-lg capitalize rounded-[3px] '>Select <FontAwesomeIcon icon={faPlaneDeparture} size="sm" className='ml-1 text-pink-blue' /></button>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink , useNavigate } from 'react-router-dom';
 import Pages from '../../Pages/Pages/Pages';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown , faPlane} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
@@ -19,7 +19,9 @@ const NavBar = () => {
         <div className='absolute w-full z-10'>
             <div className='flex items-center sm:justify-between mx-5'>
                 <div>
-                    <h3 className='text-white'>Go travel</h3>
+                    <div classNAme='flex items-center'>
+                        <FontAwesomeIcon icon={faPlane} size="2xl" className='mr-4 text-pink-black bg-smooth-yellow-150 p-2 rounded-full' />
+                    </div>
                 </div>
                 <div className='hidden md:flex space-x-4 text-base font-semibold capitalize font-sans'>
 

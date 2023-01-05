@@ -1,0 +1,8 @@
+.banner-img{
+    background-image: url(../../../Images/banner-employee.jpg);
+    height: 500px;
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

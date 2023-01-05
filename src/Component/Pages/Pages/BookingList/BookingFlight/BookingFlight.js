@@ -7,6 +7,7 @@ import BookingListFilter from '../../BookingListFilter/BookingListFilter';
 const flightList = [
     {
         id: 1,
+        key: 'B016F3M7OM',
         planeName: 'Etihad Airway',
         date: `Thursday`,
         month: 'Jun 16',
@@ -30,6 +31,7 @@ const flightList = [
     },
     {
         id: 2,
+        key: 'B01MQ0FSS0',
         planeName: 'Etihad Airway',
         date: `Thursday`,
         month: 'Jun 16',

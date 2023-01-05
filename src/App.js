@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DashBooking from './Component/Dashboard/Booking/DashBooking';
 import Dashboard from './Component/Dashboard/Dashboard';
 import DashboardHome from './Component/Dashboard/DashboardHome/DashboardHome';
+import Employee from './Component/Dashboard/Employee/Employee';
 import ProfileItem from './Component/Dashboard/Profile/ProfileItem';
 import ReviewsItem from './Component/Dashboard/Reviews/ReviewsItem';
 import SettingsSide from './Component/Dashboard/Settings/SettingsSide';
@@ -29,14 +30,15 @@ function App() {
 
               <Route path='/dashboard' element={<DashboardHome />} />
               <Route path='/dashboard/booking' element={<DashBooking />} />
-              <Route path='/dashboard/profile' element={<ProfileItem />} />
+              <Route path='/dashboard/employee' element={<Employee />} />
+              <Route path='/dashboard/service' element={<ProfileItem />} />
               <Route path='/dashboard/reviews' element={<ReviewsItem />} />
               <Route path='/dashboard/settings' element={<SettingsSide />} />
 
             </Route> 
             
             <Route path='/booking-list' element={<BookingList />} /> 
-            <Route path='/booking-details' element={<BookingDetails />} /> 
+            <Route path='/booking-details/:detailsId' element={<BookingDetails />} /> 
             <Route path='/login' element={<Login />} /> 
             <Route path='/register' element={<Register />} />
 

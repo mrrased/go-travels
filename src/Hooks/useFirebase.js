@@ -1,6 +1,7 @@
 import  { useState } from 'react';
 import AuthenticationInitialize from '../Firebase/Firebase.Init';
 import { GoogleAuthProvider , getAuth, signInWithPopup, createUserWithEmailAndPassword , signInWithEmailAndPassword } from "firebase/auth";
+import { addToDb } from './DatabaseManager';
 
 
 
@@ -15,6 +16,7 @@ const useFirebase = () => {
 
     const auth = getAuth();
 
+    // 
     const googleSignIn = () =>{
 
         const provider = new GoogleAuthProvider();
@@ -22,8 +24,15 @@ const useFirebase = () => {
         signInWithPopup(auth, provider)
         .then((result) => {
 
-            setUser(result.user)
-            console.log(user);
+            if(result?.user?.emailVerified === true){
+                
+                const displayName = result?.user?.displayName;
+                const email = result?.user?.email;
+
+                middleFunc(email, displayName, 'POST');
+                setUser(result.user);
+                console.log(user);
+            }
             // ...
         }).catch((error) => {
             // Handle Errors here. error.message;
@@ -61,6 +70,7 @@ const useFirebase = () => {
 
     }
 
+    // saved users info from server
     const middleFunc = (email, displayName, method) =>{
 
         const users = {email, displayName};
@@ -71,7 +81,14 @@ const useFirebase = () => {
                 'content-type':'application/json'
             },
             body: JSON.stringify(users)
-        }).then()
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data?.acknowledged === true){
+                addToDb(data.insertedId)
+            }
+        })
+
 
     }
 

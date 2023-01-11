@@ -1,0 +1,8 @@
+.banner-update{
+    background-image: url(../../../Images//zone-construction.jpg);
+    height: 300px;
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -1,9 +1,9 @@
 import React from 'react';
+import './Settings.css';
 
 const SettingsSide = () => {
     return (
-        <div>
-            <h1>This is a settings Page</h1>
+        <div className='info-banner'>
         </div>
     );
 };

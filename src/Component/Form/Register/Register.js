@@ -118,7 +118,7 @@ const Register = () => {
             // console.log('is right');
             if(confirmPassword !== password){
     
-                alert('Do Not password Match');
+                toast('Do Not password Match');
                 return;
             }
             SignWithGoogle( email, matchSuccess, name);

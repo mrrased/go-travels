@@ -1,9 +1,8 @@
 import React from 'react';
-
+import './Update.css';
 const ReviewsItem = () => {
     return (
-        <div>
-            <h1>This is a Reviews Item page</h1>
+        <div className='banner-update'>
         </div>
     );
 };

@@ -68,7 +68,7 @@ const Dashboard = (props) => {
     {
         text: 'Info',
         icon: <InfoOutlinedIcon />,
-        onClick: () => navigate('/dashboard/settings')
+        onClick: () => navigate('/dashboard/info')
     },
     {
         text: 'Settings',

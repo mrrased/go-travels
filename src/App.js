@@ -4,6 +4,7 @@ import DashBooking from './Component/Dashboard/Booking/DashBooking';
 import Dashboard from './Component/Dashboard/Dashboard';
 import DashboardHome from './Component/Dashboard/DashboardHome/DashboardHome';
 import Employee from './Component/Dashboard/Employee/Employee';
+import InfoDash from './Component/Dashboard/InfoDash/InfoDash';
 import ProfileItem from './Component/Dashboard/Profile/ProfileItem';
 import ReviewsItem from './Component/Dashboard/Reviews/ReviewsItem';
 import SettingsSide from './Component/Dashboard/Settings/SettingsSide';
@@ -33,6 +34,7 @@ function App() {
               <Route path='/dashboard/employee' element={<Employee />} />
               <Route path='/dashboard/service' element={<ProfileItem />} />
               <Route path='/dashboard/reviews' element={<ReviewsItem />} />
+              <Route path='/dashboard/info' element={<InfoDash />} />
               <Route path='/dashboard/settings' element={<SettingsSide />} />
 
             </Route> 

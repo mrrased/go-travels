@@ -3,11 +3,13 @@ import { NavLink , useNavigate } from 'react-router-dom';
 import Pages from '../../Pages/Pages/Pages';
 import { faCaretDown , faPlane} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useAuth from '../../../Hooks/useAuth';
 
 
 const NavBar = () => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
+    const { user, logOutUser } = useAuth();
 
     const navigate = useNavigate();
 
@@ -51,9 +53,9 @@ const NavBar = () => {
                     className='px-5 py-3 m-2 text-white hover:bg-smooth-yellow-150 hover:text-black'>Blog</button>
                     <NavLink to={'/contact'} className='px-5 py-3 m-2 text-white hover:bg-smooth-yellow-150 hover:text-black' >Contact</NavLink>
 
-                    <button onClick={()=> navigate('/register')} className='px-5 py-3 m-2 drop-shadow-md bg-white hover:bg-smooth-yellow-150 hover:text-black'>register</button>
+                    <button onClick={()=> navigate('/register')} className={`px-5 py-3 m-2 drop-shadow-md bg-white hover:bg-smooth-yellow-150 hover:text-black ${user.email ? "hidden" : "block"}`}>register</button>
 
-                    <button onClick={()=> navigate('/login')} className='px-5 py-3 m-2 drop-shadow-md bg-smooth-yellow-150 hover:bg-white hover:text-black'>Sign In</button>
+                    <button onClick={()=> user.email ? logOutUser() : navigate('/login')} className='px-5 py-3 m-2 drop-shadow-md bg-smooth-yellow-150 hover:bg-white hover:text-black'>{`${user.email ? "Logout":"Login"}`}</button>
                 </div>
             </div>
                 {

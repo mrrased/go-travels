@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
 import { Container } from '@mui/material';
 import img1 from '../../../Images/login.png';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 import img2 from '../../../Images/Google-logo.png';
+import { Toaster } from 'react-hot-toast';
 
 const Login = () => {
 
     const [email , setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const loaction = useLocation();
 
     const { googleSignIn , SignInWithPassword} = useAuth();
 
     const SignWithGooglePassword = (e) =>{
-
         e.preventDefault();
-
-        SignInWithPassword( email, password );
+        SignInWithPassword( email, password, loaction, navigate);
     }
 
     return (
         <Container maxWidth='lg'>
+                <Toaster />
                 <div className='h-screen flex items-center justify-center'>
                     <div className='flex max-w-xlg bg-blue-50 p-5 drop-shadow-md'>
                         <div>
@@ -34,7 +35,7 @@ const Login = () => {
                                     type="email" 
                                     name="" 
                                     placeholder='Email' 
-                                    className='w-60 sm:w-80 h-10 bg-gray-200 p-2' 
+                                    className='w-60 sm:w-80 h-10 bg-gray-200 p-2 focus:outline-none focus:ring-1 transition duration-1000 focus:transition focus:duration-1000' 
                                     required 
                                     onChange={(e)=>setEmail(e.target.value)}
                                 /><br /><br />
@@ -43,7 +44,7 @@ const Login = () => {
                                     type="password" 
                                     name="" 
                                     placeholder='Password'
-                                    className='w-60 sm:w-80 h-10 bg-gray-200 p-2' 
+                                    className='w-60 sm:w-80 h-10 bg-gray-200 p-2 focus:outline-none focus:ring-1 transition duration-1000 focus:transition focus:duration-1000' 
                                     required 
                                     onChange={(e)=>setPassword(e.target.value)}
                                 /><br /><br />

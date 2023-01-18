@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import img1 from '../../../Images/register.png';
 import useAuth from '../../../Hooks/useAuth';
 // import { useSnackbar } from 'notistack';
+import toast, { Toaster } from 'react-hot-toast';
+import gmail_logo from '../../../Images/gmail_logo.png';
 
 const Register = () => {
 
@@ -20,67 +22,36 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    const { SignWithGoogle } = useAuth();
-    
-    // const { enqueueSnackbar } = useSnackbar();
-    
-    // const handleClickVariant = (variant) => {
-        //     // variant could be success, error, warning, info, or default
-        //     enqueueSnackbar('This is a success message!', { variant });
-        //   };
-
-        useEffect(()=>{
-    
-            if(name?.length >= 1){
-    
-                setIsName(true);
-            }
-            else if(name?.length === 0){
-
-                setIsName(false);
-            }
-    
-        },[name])
+    const { SignWithGoogle, submittedMail } = useAuth();
 
     useEffect(()=>{
+        if(name?.length >= 1){
+            setIsName(true);
+        }
+        else if(name?.length === 0){
+            setIsName(false);
+        }
+    },[name])
 
+    useEffect(()=>{
         if(password?.length >= 8){
-
             setIsPassword(true);
             setMatchSuccess(password);
-            // console.log(password.length);
-            // console.log(isPassword);
         }
         else if(password?.length >= 1 && password?.length <= 8){
-
             setIsPassword(false);
-            // console.log(isPassword);
-
         }
-
     },[ password, isPassword ]);
 
+
     useEffect(()=>{
-
         if(password.match(confirmPassword) && confirmPassword?.length === 8){
-            
             setIsCon(true);
-            // console.log(isCon);
-            // if(password.length >= 6){
-
-            //     setIsPassword(true);
-                setMatchSuccess(password);
-            //     console.log(password.length);
-            // }
-            // setIsPassword(false);
-            // console.log('matching')
+            setMatchSuccess(password);
         }
         else if(password?.length >= 1 && password.length <= 8){
             setIsCon(false);
-            // console.log(isCon);
         }
-
-        
 
     },[ confirmPassword, password, isCon ]);
 
@@ -88,48 +59,39 @@ const Register = () => {
 
     useEffect(()=>{
         if(email.toLowerCase().match(/^[^@]+@[^@]{2,}\.[^@]{2,}$/)){
-
             setIsTrue(true);
-            // console.log('green');
-            // console.log(isTrue)
-
         }
         else if( email?.length >= 1 ){
-            // console.log(email.length);
             setIsFalse(true);
             setIsTrue(false);
         }
-        
         else{
             setIsTrue(false);
             setIsFalse(false);
-            
-            // console.log(isTrue);
         }
     },[ email, isTrue]);
 
 
     const handleSubmit = (e) =>{
-
         e.preventDefault();
-
         if( email.toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
-
-            // console.log('is right');
             if(confirmPassword !== password){
-    
-                toast('Do Not password Match');
+                toast.error('Do Not password Match');
                 return;
             }
-            SignWithGoogle( email, matchSuccess, name);
+            SignWithGoogle( email, matchSuccess, name)
         }
-
     };
 
     return (
         <Container maxWidth='lg'>
+            <Toaster />
                 <div className='h-screen flex items-center justify-center'>
-                    <div className='flex max-w-xlg bg-blue-50 p-5 drop-shadow-md'>
+                { submittedMail === 1 ? <div className='flex items-center'> 
+                        <img src={ gmail_logo } alt="gmail" className='h-10 w-10 mr-2'/>
+                        <h1>Varify Your mail address <a href='https://mail.google.com/mail/u/0/#inbox' style={{target:'_blank'}} className='hover:underline text-blue-400' >click here</a></h1> 
+                    </div> 
+                : <div className='flex max-w-xlg bg-blue-50 p-5 drop-shadow-md'>
                         <div>
                             <img className='hidden sm:block mx-auto' src={img1} alt="" />
                         </div>
@@ -182,7 +144,7 @@ const Register = () => {
                                 onClick={() => navigate('/login')} className='hover:underline text-pink-blue cursor-pointer'>Sign in</span></h4>
                             </form>
                         </div>
-                    </div>
+                    </div>}
                 </div>
         </Container>
     );

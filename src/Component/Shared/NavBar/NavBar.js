@@ -55,7 +55,7 @@ const NavBar = () => {
 
                     <button onClick={()=> navigate('/register')} className={`px-5 py-3 m-2 drop-shadow-md bg-white hover:bg-smooth-yellow-150 hover:text-black ${user.email ? "hidden" : "block"}`}>register</button>
 
-                    <button onClick={()=> user.email ? logOutUser() : navigate('/login')} className='px-5 py-3 m-2 drop-shadow-md bg-smooth-yellow-150 hover:bg-white hover:text-black'>{`${user.email ? "Logout":"Login"}`}</button>
+                    <button onClick={()=> user.email ? logOutUser() : navigate('/login')} className='px-5 py-3 m-2 drop-shadow-md bg-smooth-yellow-150 hover:bg-white hover:text-black'>{`${user.email ? user?.displayName : "Login"}`}</button>
                 </div>
             </div>
                 {

@@ -16,9 +16,25 @@ const Employee = () => {
     const handleSubmit = e =>{
         e.preventDefault();
 
-        const info = { firstName, lastName, email, jobPosition, number }
+        const user = { firstName, lastName, email, jobPosition, number }
+        console.log(user);
+        const token = localStorage.getItem('t_id').split('"')[1];
+        console.log(token);
+        fetch('http://localhost:5000/users/admin',{
 
-        console.log(info);
+            method: 'PUT',
+            headers:{
+                'authorization': `bearer ${token}`,
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            console.log('put data',data);
+        })
+
+        
     }
 
     return (

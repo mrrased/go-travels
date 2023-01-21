@@ -1,8 +1,10 @@
 import  { useEffect, useState } from 'react';
 import AuthenticationInitialize from '../Firebase/Firebase.Init';
 import { GoogleAuthProvider , getAuth, signInWithPopup, createUserWithEmailAndPassword , signInWithEmailAndPassword , sendEmailVerification, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
-import { addToDb } from './DatabaseManager';
+
 import { toast } from 'react-hot-toast';
+import useToken from './useToken';
+import { AddToTokenDb, clearTheTokenCart } from './DatabaseManager';
 
 
 
@@ -16,10 +18,14 @@ const useFirebase = () => {
     const [err, setErr] = useState({});
     const [submittedMail, setSubmittedMail] = useState(0);
     const [isLoading , setIsLoading] = useState(false);
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
+
+    const [token] = useToken(createdUserEmail)
 
     const auth = getAuth();
 
-    // 
+
+    // google signIn area start
     const googleSignIn = () =>{
 
         const provider = new GoogleAuthProvider();
@@ -34,7 +40,6 @@ const useFirebase = () => {
 
                 middleFunc(email, displayName, 'POST');
                 setUser(result.user);
-                console.log(user);
             }
         }).catch((error) => {
             // Handle Errors here. error.message;
@@ -42,7 +47,11 @@ const useFirebase = () => {
             // ...
         });
     };
+    // google signIn area end
 
+
+
+    //create user email and password area start
     const SignWithGoogle = (email, password, name) =>{
 
         createUserWithEmailAndPassword(auth, email, password)
@@ -53,17 +62,17 @@ const useFirebase = () => {
                 updateProfile(auth.currentUser, {
                     displayName:name
                 }).then(() => {
-                    // Profile updated!
+                    
+                    middleFunc(email, name, 'POST');
                     sendEmailVerification(auth.currentUser)
                     .then(() => {
                         // Email verification sent!
                         setUser(user);
-                        middleFunc(email, name, 'POST');
                         setSubmittedMail(1);
                     })
                 }).catch((error) => {
                         // An error occurred
-                });
+                })
             }
         })
         .catch((error) => {
@@ -71,17 +80,26 @@ const useFirebase = () => {
             toast.error(errorMessage);
         });
     };
+    //create user email and password area end
 
 
+    // user login area start
     const SignInWithPassword = (email, password, location, navigate) =>{
 
         setIsLoading(true);
-
+        
         signInWithEmailAndPassword(auth, email, password )
         .then((userCredential) => {
-            setUser(userCredential.user)
+
+            setCreatedUserEmail(email);
+            setUser(userCredential.user);
+
             const destination = location?.state?.from?.pathname || '/';
-            navigate(destination, {replace: true})
+
+                if(token){
+                    AddToTokenDb(token);
+                    navigate(destination, {replace: true})
+                }
         })
         .catch((error) => {
             const errorMessage = (error.message).split(' ')[2].split('/')[1].split(')')[0]
@@ -91,11 +109,15 @@ const useFirebase = () => {
         .finally(()=> setIsLoading(false));
 
     }
+    // user login area end
 
-    // saved users info from server
+
+
+    // saved users info from server area start
     const middleFunc = (email, displayName, method) =>{
 
         const users = {email, displayName};
+
         
         fetch('http://localhost:5000/users',{
             method: method,
@@ -105,15 +127,14 @@ const useFirebase = () => {
             body: JSON.stringify(users)
         })
         .then(res => res.json())
-        .then(data => {
-            if(data?.acknowledged === true){
-                addToDb(data.insertedId)
-            }
-        })
+        .then()
     }
+    // saved users info from server area end
 
-    // Get the currently signed-in user
+
+    // Get the currently signed-in user area start
     useEffect(()=>{
+
         const unSubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
@@ -121,16 +142,25 @@ const useFirebase = () => {
                 setUser({});
             }
             setIsLoading(false)
-          });
-          return ()=> unSubscribe;
-    },[auth]);
+        });
+        return ()=> unSubscribe;
 
-    // Sign-out user
+    },[auth]);
+    // Get the currently signed-in user area end
+
+
+    // user Sign-out area start 
     const logOutUser = () =>{
+
         signOut(auth).then(() => {
-          }).catch((error) => {
+
+            clearTheTokenCart();
+
+        }).catch((error) => {
           });
     }
+    // user sign-out area end
+
     return {
         user,
         err,

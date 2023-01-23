@@ -22,6 +22,8 @@ const useFirebase = () => {
     const [isRole , setIsRole] = useState(false);
     const [isRoleLoading, setIsRoleLoading] = useState(false);
     const [accessPower, setAccessPower] = useState('');
+    
+    
 
     const [token] = useToken(createdUserEmail)
 
@@ -166,6 +168,7 @@ const useFirebase = () => {
 
     // admin 
     useEffect(()=>{
+
         setIsRoleLoading(true);
         fetch(`http://localhost:5000/users/${user?.email}`)
         .then(res => res.json())
@@ -202,6 +205,31 @@ const useFirebase = () => {
 
     }
 
+
+    const userMessage = ( name, email, subject, number, messages ) =>{
+
+        const message  = { name, email, subject, number, messages }
+
+        setIsLoading(true);
+
+        fetch('http://localhost:5000/users/message',{
+
+            method: 'POST',
+            headers:{
+                
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(message)
+        })
+        .then(res => res.json())
+        .then(data =>{
+
+            toast.success('Your Message Successfull');
+            
+        }).finally(()=>setIsLoading(false)) 
+        
+    }
+
     return {
         user,
         err,
@@ -213,7 +241,9 @@ const useFirebase = () => {
         logOutUser,
         isRole,
         isRoleLoading,
-        accessPower
+        accessPower,
+        userMessage
+
 
     }
 };

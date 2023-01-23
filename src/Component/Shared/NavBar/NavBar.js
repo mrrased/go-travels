@@ -9,7 +9,7 @@ import useAuth from '../../../Hooks/useAuth';
 const NavBar = () => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
-    const { user, logOutUser } = useAuth();
+    const { user, logOutUser, isRole } = useAuth();
 
     const navigate = useNavigate();
 
@@ -27,17 +27,61 @@ const NavBar = () => {
                 </div>
                 <div className='hidden md:flex space-x-4 text-base font-semibold capitalize font-sans'>
 
-                    <NavLink to={"/dashboard"} className='px-5 py-3 m-2 text-white hover:bg-smooth-yellow-150 hover:text-black transition-colors duration-400'>Dashboard</NavLink>
-                    <NavLink to={"/"} className='px-5 py-3 m-2 text-white hover:bg-smooth-yellow-150 hover:text-black transition-colors duration-400'>Home</NavLink>
-                    <NavLink to={"/about"} className='px-5 py-3 m-2 text-white hover:bg-smooth-yellow-150 hover:text-black'>About</NavLink>
+                    { 
+                        isRole && <NavLink 
+                        
+                        to={"/dashboard"} 
+
+                        className='
+                        px-5 
+                        py-3 
+                        m-2 
+                        text-white 
+                        hover:bg-smooth-yellow-150 
+                        hover:text-black 
+                        transition-colors 
+                        duration-400'
+
+                        >Dashboard</NavLink> 
+                    }
+
+
+                    <NavLink to={"/"} 
+
+                    className='
+                    px-5 
+                    py-3 
+                    m-2 
+                    text-white 
+                    hover:bg-smooth-yellow-150 
+                    hover:text-black 
+                    transition-colors 
+                    duration-400'
+
+                    >Home</NavLink>
+
+
+                    <NavLink to={"/about"}
+
+                    className='
+                    px-5 
+                    py-3 
+                    m-2 
+                    text-white 
+                    hover:bg-smooth-yellow-150 
+                    hover:text-black'
+
+                    >About</NavLink>
                     
                     <button 
+
                         ref={anchorRef}
                         id="composition-button"
                         aria-controls={open ? 'composition-menu' : undefined}
                         aria-expanded={open ? 'true' : undefined}
                         aria-haspopup="true"
                         onClick={handleToggle}
+
                         className='
                         px-5 
                         py-3 
@@ -50,7 +94,17 @@ const NavBar = () => {
 
                     <button 
 
-                    className='px-5 py-3 m-2 text-white hover:bg-smooth-yellow-150 hover:text-black'>Blog</button>
+                    className='
+                    px-5 
+                    py-3 
+                    m-2 
+                    text-white 
+                    hover:bg-smooth-yellow-150 
+                    hover:text-black'
+
+                    >Blog</button>
+
+
                     <NavLink to={'/contact'} className='px-5 py-3 m-2 text-white hover:bg-smooth-yellow-150 hover:text-black' >Contact</NavLink>
 
                     <button onClick={()=> navigate('/register')} className={`px-5 py-3 m-2 drop-shadow-md bg-white hover:bg-smooth-yellow-150 hover:text-black ${user.email ? "hidden" : "block"}`}>register</button>

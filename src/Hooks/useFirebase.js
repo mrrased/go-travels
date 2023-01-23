@@ -19,6 +19,9 @@ const useFirebase = () => {
     const [submittedMail, setSubmittedMail] = useState(0);
     const [isLoading , setIsLoading] = useState(false);
     const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [isRole , setIsRole] = useState(false);
+    const [isRoleLoading, setIsRoleLoading] = useState(false);
+    const [accessPower, setAccessPower] = useState('');
 
     const [token] = useToken(createdUserEmail)
 
@@ -161,6 +164,44 @@ const useFirebase = () => {
     }
     // user sign-out area end
 
+    // admin 
+    useEffect(()=>{
+        setIsRoleLoading(true);
+        fetch(`http://localhost:5000/users/${user?.email}`)
+        .then(res => res.json())
+        .then(data => {
+            
+            setIsRole(data?.isRole);
+            setAccessPower(data?.role)
+            console.log(data)
+
+        })
+        .finally(()=> setIsRoleLoading(false));
+        
+    },[user?.email]);
+
+
+
+    const accessRole = ( email ) =>{
+
+        const localtoken = localStorage.getItem('t_id').split('"')[1];
+
+        fetch('http://localhost:5000/users/role',{
+
+            method: 'PUT',
+            headers:{
+                'authorization': `bearer ${localtoken}`,
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(email)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            toast.success('New Join Successfully');
+        })
+
+    }
+
     return {
         user,
         err,
@@ -169,7 +210,10 @@ const useFirebase = () => {
         SignInWithPassword,
         submittedMail,
         isLoading,
-        logOutUser
+        logOutUser,
+        isRole,
+        isRoleLoading,
+        accessPower
 
     }
 };

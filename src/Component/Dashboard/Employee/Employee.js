@@ -1,5 +1,6 @@
 import { Container } from '@mui/system';
 import React, { useState } from 'react';
+import { toast, Toaster } from 'react-hot-toast';
 import './employee.css'; 
 
 const Employee = () => {
@@ -31,7 +32,7 @@ const Employee = () => {
         })
         .then(res => res.json())
         .then(data =>{
-            console.log('put data',data);
+            toast.success('New Join Successfully');
         })
 
         
@@ -39,6 +40,7 @@ const Employee = () => {
 
     return (
         <div>
+            <Toaster />
             <div className='banner-img'></div>
 
             <div className='-mt-[135px] md:-mt-[133px] xl:-mt-24 ml-3 lg:ml-[160px] xl:ml-[300px]'>

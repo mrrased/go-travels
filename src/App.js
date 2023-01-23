@@ -15,6 +15,7 @@ import About from './Component/Pages/About/About';
 import Contact from './Component/Pages/Contact/Contact';
 import BookingDetails from './Component/Pages/Pages/BookingDetails/BookingDetails';
 import BookingList from './Component/Pages/Pages/BookingList/BookingList';
+import AdminRoute from './Hooks/AdminRoute';
 import AuthProvider from './Hooks/AuthProvider';
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
             <Route path='/about' element={<About />} /> 
             <Route path='/contact' element={<Contact />} /> 
 
-            <Route path='/dashboard' element={<Dashboard />}>
+            <Route path='/dashboard' element={<AdminRoute ><Dashboard /></AdminRoute>}>
 
               <Route path='/dashboard' element={<DashboardHome />} />
               <Route path='/dashboard/booking' element={<DashBooking />} />

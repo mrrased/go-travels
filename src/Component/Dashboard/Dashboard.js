@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -23,6 +23,7 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import UpdateIcon from '@mui/icons-material/Update';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useNavigate , Outlet } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
 
 
 
@@ -30,8 +31,11 @@ const drawerWidth = 300;
 
 const Dashboard = (props) => {
 
-    const { window } = props;
+  const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [reduceAccess, setReduceAcces] = React.useState([]);
+
+  const { accessPower } = useAuth();
 
   const navigate = useNavigate();
 
@@ -77,17 +81,52 @@ const Dashboard = (props) => {
     },
     {
         text: 'Logout',
-        icon: <PowerSettingsNewIcon sx={{color: 'red'}} />,
+        icon: <PowerSettingsNewIcon sx={{ color: 'red' }} />,
         onClick: () => navigate('/dashboard/settings')
     },
   ]
+
+  
+  useEffect(()=>{
+
+    let reducesData = [];
+
+    if(accessPower === 'subadmin'){
+      const existItem = itemsList.filter(menu => menu.text !== 'Employee');
+      
+      for(let obj of existItem){
+        reducesData.push(obj);
+      }
+    }
+    else if(accessPower === 'admin'){
+
+      for(let obj of itemsList){
+        reducesData.push(obj);
+      }
+    }
+    else if(accessPower === 'editor'){
+
+      const existItem = itemsList.filter(menu => menu.text !== 'Employee' )
+      const secondExist = existItem.filter(menu => menu.text !== 'Settings' )
+      const finalExist = secondExist.filter(menu => menu.text !== 'Update' )
+
+      for(let obj of finalExist){
+        reducesData.push(obj);
+      }
+
+    }
+    setReduceAcces(reducesData);
+    
+  },[ accessPower ])
+
+  
 
   const drawer = (
     <div>
       <Toolbar />
       <Divider />
       <List>
-        {itemsList.map((list) => (
+        { reduceAccess.map((list) => (
           <ListItem key={list.text} disablePadding>
             <ListItemButton onClick={list.onClick}>
               <ListItemIcon sx={{ justifyContent: 'center', color: '#622243' }}>

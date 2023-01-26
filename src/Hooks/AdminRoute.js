@@ -8,13 +8,17 @@ const AdminRoute = ({children}) => {
     // const [isAdmin, isAdminLoading] = useAdmin(user?.email);
     const location = useLocation();
 
-    if(isLoading || isRoleLoading){
+    if( isLoading || isRoleLoading ){
+        
         return <LinearProgress />
     }
-    if(user && isRole){
-        return children;
+    if( !isRole && user.email ){
+        
+        return <Navigate to="/" state={{ from: location }} replace />
     }
-    return <Navigate to="/login" state={{ from: location }} replace />
+    
+    return children;
+    
 };
 
 export default AdminRoute;

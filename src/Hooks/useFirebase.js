@@ -3,7 +3,7 @@ import AuthenticationInitialize from '../Firebase/Firebase.Init';
 import { GoogleAuthProvider , getAuth, signInWithPopup, createUserWithEmailAndPassword , signInWithEmailAndPassword , sendEmailVerification, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
 
 import { toast } from 'react-hot-toast';
-import useToken from './useToken';
+// import useToken from './useToken';
 import { AddToTokenDb, clearTheTokenCart } from './DatabaseManager';
 
 
@@ -17,15 +17,16 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [err, setErr] = useState({});
     const [submittedMail, setSubmittedMail] = useState(0);
-    const [isLoading , setIsLoading] = useState(false);
-    const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [isLoading , setIsLoading] = useState(true);
+    // const [createdUserEmail, setCreatedUserEmail] = useState('');
     const [isRole , setIsRole] = useState(false);
-    const [isRoleLoading, setIsRoleLoading] = useState(false);
+    const [isRoleLoading, setIsRoleLoading] = useState(true);
     const [accessPower, setAccessPower] = useState('');
+    const [call, setCall] = useState(false);
     
     
 
-    const [token] = useToken(createdUserEmail)
+    // const [token] = useToken(createdUserEmail)
 
     const auth = getAuth();
 
@@ -89,22 +90,28 @@ const useFirebase = () => {
 
 
     // user login area start
-    const SignInWithPassword = (email, password, location, navigate) =>{
+    const SignInWithPassword = ( email, password, location, navigate ) =>{
 
         setIsLoading(true);
         
         signInWithEmailAndPassword(auth, email, password )
         .then((userCredential) => {
 
-            setCreatedUserEmail(email);
-            setUser(userCredential.user);
-
-            const destination = location?.state?.from?.pathname || '/';
-
-                if(token){
-                    AddToTokenDb(token);
+            console.log('call from sign in password');
+            // setCreatedUserEmail(email);
+            // setUser(userCredential.user);
+            fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res => res.json())
+            .then(data => {
+            
+                const destination = location?.state?.from?.pathname || '/';
+                if(data?.accessToken){
+                    AddToTokenDb(data?.accessToken);
                     navigate(destination, {replace: true})
                 }
+        })
+
+
         })
         .catch((error) => {
             const errorMessage = (error.message).split(' ')[2].split('/')[1].split(')')[0]
@@ -140,15 +147,25 @@ const useFirebase = () => {
     // Get the currently signed-in user area start
     useEffect(()=>{
 
-        const unSubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user);
-            } else {
-                setUser({});
-            }
-            setIsLoading(false)
-        });
-        return ()=> unSubscribe;
+        // const h = async()=>{
+
+            const unSubscribe =  onAuthStateChanged( auth, async( user) => {
+                console.log('search user', user);
+                if (user) {
+                    setUser(user);
+                    console.log('call from user', user)
+                } else {
+                    setUser({});
+                }
+                console.log( 'auth call end', isLoading );
+
+            //    await setIsLoading(false);
+                
+            });
+            return ()=> unSubscribe;
+        
+        // }
+        // h();
 
     },[auth]);
     // Get the currently signed-in user area end
@@ -170,40 +187,50 @@ const useFirebase = () => {
     useEffect(()=>{
 
         setIsRoleLoading(true);
+
         fetch(`http://localhost:5000/users/${user?.email}`)
         .then(res => res.json())
         .then(data => {
             
             setIsRole(data?.isRole);
             setAccessPower(data?.role)
+            // setUser(user);
+            console.log( 'user isrole',user )
             console.log(data)
+            
+            
+        }).finally(()=>{
 
+            setIsRoleLoading(false);
+            if(user?.email){
+
+                setIsLoading(false);
+            }
         })
-        .finally(()=> setIsRoleLoading(false));
         
     },[user?.email]);
 
 
 
-    const accessRole = ( email ) =>{
+    // const accessRole = ( email ) =>{
 
-        const localtoken = localStorage.getItem('t_id').split('"')[1];
+    //     const localtoken = localStorage.getItem('t_id').split('"')[1];
 
-        fetch('http://localhost:5000/users/role',{
+    //     fetch('http://localhost:5000/users/role',{
 
-            method: 'PUT',
-            headers:{
-                'authorization': `bearer ${localtoken}`,
-                'content-type' : 'application/json'
-            },
-            body: JSON.stringify(email)
-        })
-        .then(res => res.json())
-        .then(data =>{
-            toast.success('New Join Successfully');
-        })
+    //         method: 'PUT',
+    //         headers:{
+    //             'authorization': `bearer ${localtoken}`,
+    //             'content-type' : 'application/json'
+    //         },
+    //         body: JSON.stringify(email)
+    //     })
+    //     .then(res => res.json())
+    //     .then(data =>{
+    //         toast.success('New Join Successfully');
+    //     })
 
-    }
+    // }
 
 
     const userMessage = ( name, email, subject, number, messages ) =>{
@@ -242,7 +269,8 @@ const useFirebase = () => {
         isRole,
         isRoleLoading,
         accessPower,
-        userMessage
+        userMessage,
+        setCall
 
 
     }

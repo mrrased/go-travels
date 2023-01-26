@@ -17,6 +17,7 @@ import BookingDetails from './Component/Pages/Pages/BookingDetails/BookingDetail
 import BookingList from './Component/Pages/Pages/BookingList/BookingList';
 import AdminRoute from './Hooks/AdminRoute';
 import AuthProvider from './Hooks/AuthProvider';
+import PrivateRoute from './Hooks/PrivateRoute';
 
 function App() {
   return (
@@ -28,15 +29,15 @@ function App() {
             <Route path='/about' element={<About />} /> 
             <Route path='/contact' element={<Contact />} /> 
 
-            <Route path='/dashboard' element={<AdminRoute ><Dashboard /></AdminRoute>}>
+            <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>}>
 
-              <Route path='/dashboard' element={<DashboardHome />} />
-              <Route path='/dashboard/booking' element={<DashBooking />} />
-              <Route path='/dashboard/employee' element={<Employee />} />
-              <Route path='/dashboard/service' element={<ProfileItem />} />
-              <Route path='/dashboard/reviews' element={<ReviewsItem />} />
-              <Route path='/dashboard/info' element={<InfoDash />} />
-              <Route path='/dashboard/settings' element={<SettingsSide />} />
+              <Route path='/dashboard' element={ <DashboardHome />} />
+              <Route path='/dashboard/booking' element={<AdminRoute><DashBooking /></AdminRoute>} />
+              <Route path='/dashboard/employee' element={<AdminRoute><Employee /></AdminRoute>} />
+              <Route path='/dashboard/service' element={<AdminRoute><ProfileItem /></AdminRoute>} />
+              <Route path='/dashboard/reviews' element={<AdminRoute><ReviewsItem /></AdminRoute>} />
+              <Route path='/dashboard/info' element={<AdminRoute><InfoDash /></AdminRoute>} />
+              <Route path='/dashboard/settings' element={<AdminRoute><SettingsSide /></AdminRoute>} />
 
             </Route> 
             

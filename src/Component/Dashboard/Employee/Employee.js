@@ -18,9 +18,9 @@ const Employee = () => {
         e.preventDefault();
 
         const user = { firstName, lastName, email, jobPosition, number }
-        console.log(user);
+        
         const token = localStorage.getItem('t_id').split('"')[1];
-        console.log(token);
+        
         fetch('http://localhost:5000/users/admin',{
 
             method: 'PUT',

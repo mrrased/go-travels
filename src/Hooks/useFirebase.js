@@ -3,8 +3,9 @@ import AuthenticationInitialize from '../Firebase/Firebase.Init';
 import { GoogleAuthProvider , getAuth, signInWithPopup, createUserWithEmailAndPassword , signInWithEmailAndPassword , sendEmailVerification, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
 
 import { toast } from 'react-hot-toast';
-// import useToken from './useToken';
+import useToken from './useToken';
 import { AddToTokenDb, clearTheTokenCart } from './DatabaseManager';
+import { useQuery } from '@tanstack/react-query';
 
 
 
@@ -18,19 +19,19 @@ const useFirebase = () => {
     const [err, setErr] = useState({});
     const [submittedMail, setSubmittedMail] = useState(0);
     const [isLoading , setIsLoading] = useState(true);
-    // const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
     const [isRole , setIsRole] = useState(false);
     const [isRoleLoading, setIsRoleLoading] = useState(true);
     const [accessPower, setAccessPower] = useState('');
-    const [call, setCall] = useState(false);
+    const [userMail, setUserMail] = useState('');
     
     
 
-    // const [token] = useToken(createdUserEmail)
+    const [ token ] = useToken(createdUserEmail)
 
     const auth = getAuth();
 
-
+    // console.log(token);
     // google signIn area start
     const googleSignIn = () =>{
 
@@ -100,16 +101,18 @@ const useFirebase = () => {
             console.log('call from sign in password');
             // setCreatedUserEmail(email);
             // setUser(userCredential.user);
-            fetch(`http://localhost:5000/jwt?email=${email}`)
-            .then(res => res.json())
-            .then(data => {
+            // fetch(`http://localhost:5000/jwt?email=${email}`)
+            // .then(res => res.json())
+            // .then(data => {
             
-                const destination = location?.state?.from?.pathname || '/';
-                if(data?.accessToken){
-                    AddToTokenDb(data?.accessToken);
-                    navigate(destination, {replace: true})
-                }
-        })
+            // })
+            setCreatedUserEmail(email);
+
+            const destination = location?.state?.from?.pathname || '/';
+            if(token){
+                AddToTokenDb(token);
+                navigate(destination, {replace: true})
+            }
 
 
         })
@@ -147,8 +150,6 @@ const useFirebase = () => {
     // Get the currently signed-in user area start
     useEffect(()=>{
 
-        // const h = async()=>{
-
             const unSubscribe =  onAuthStateChanged( auth, async( user) => {
                 console.log('search user', user);
                 if (user) {
@@ -158,14 +159,9 @@ const useFirebase = () => {
                     setUser({});
                 }
                 console.log( 'auth call end', isLoading );
-
-            //    await setIsLoading(false);
                 
             });
             return ()=> unSubscribe;
-        
-        // }
-        // h();
 
     },[auth]);
     // Get the currently signed-in user area end
@@ -195,7 +191,7 @@ const useFirebase = () => {
             setIsRole(data?.isRole);
             setAccessPower(data?.role)
             // setUser(user);
-            console.log( 'user isrole',user )
+            console.log( 'user isrole', user )
             console.log(data)
             
             
@@ -232,14 +228,14 @@ const useFirebase = () => {
 
     // }
 
-
+    // user contact message area start
     const userMessage = ( name, email, subject, number, messages ) =>{
 
         const message  = { name, email, subject, number, messages }
 
         setIsLoading(true);
 
-        fetch('http://localhost:5000/users/message',{
+        fetch('http://localhost:5000/user/conatact',{
 
             method: 'POST',
             headers:{
@@ -256,6 +252,27 @@ const useFirebase = () => {
         }).finally(()=>setIsLoading(false)) 
         
     }
+    // user contact message area end
+
+    // const { data: users = [] } = useQuery({
+    //     queryKey: ['user'],
+    //     queryFn: async() =>{
+    //         const res = await fetch('http://localhost:5000/user');
+    //         const data = await res.json();
+    //         console.log(data);
+    //         return data;
+    //     }
+        
+
+    // })
+
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/user/contact')
+        .then(res => res.json())
+        .then(data => setUserMail(data));
+    },[])
+
 
     return {
         user,
@@ -270,7 +287,7 @@ const useFirebase = () => {
         isRoleLoading,
         accessPower,
         userMessage,
-        setCall
+        userMail
 
 
     }

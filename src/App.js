@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DashBooking from './Component/Dashboard/Booking/DashBooking';
 import Dashboard from './Component/Dashboard/Dashboard';
 import DashboardHome from './Component/Dashboard/DashboardHome/DashboardHome';
+import UsersMessage from './Component/Dashboard/DashboardHome/UsersMessage/UsersMessage';
 import Employee from './Component/Dashboard/Employee/Employee';
 import InfoDash from './Component/Dashboard/InfoDash/InfoDash';
 import ProfileItem from './Component/Dashboard/Profile/ProfileItem';
@@ -38,6 +39,7 @@ function App() {
               <Route path='/dashboard/reviews' element={<AdminRoute><ReviewsItem /></AdminRoute>} />
               <Route path='/dashboard/info' element={<AdminRoute><InfoDash /></AdminRoute>} />
               <Route path='/dashboard/settings' element={<AdminRoute><SettingsSide /></AdminRoute>} />
+              <Route path='/dashboard/users-message' element={<AdminRoute><UsersMessage /></AdminRoute>} />
 
             </Route> 
             

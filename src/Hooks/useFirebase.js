@@ -5,7 +5,7 @@ import { GoogleAuthProvider , getAuth, signInWithPopup, createUserWithEmailAndPa
 import { toast } from 'react-hot-toast';
 import useToken from './useToken';
 import { AddToTokenDb, clearTheTokenCart } from './DatabaseManager';
-import { useQuery } from '@tanstack/react-query';
+// import { useQuery } from '@tanstack/react-query';
 
 
 
@@ -19,7 +19,7 @@ const useFirebase = () => {
     const [err, setErr] = useState({});
     const [submittedMail, setSubmittedMail] = useState(0);
     const [isLoading , setIsLoading] = useState(true);
-    const [createdUserEmail, setCreatedUserEmail] = useState('');
+    // const [createdUserEmail, setCreatedUserEmail] = useState('');
     const [isRole , setIsRole] = useState(false);
     const [isRoleLoading, setIsRoleLoading] = useState(true);
     const [accessPower, setAccessPower] = useState('');
@@ -27,7 +27,7 @@ const useFirebase = () => {
     
     
 
-    const [ token ] = useToken(createdUserEmail)
+    // const [ token ] = useToken(createdUserEmail)
 
     const auth = getAuth();
 
@@ -100,20 +100,19 @@ const useFirebase = () => {
 
             console.log('call from sign in password');
             // setCreatedUserEmail(email);
-            // setUser(userCredential.user);
-            // fetch(`http://localhost:5000/jwt?email=${email}`)
-            // .then(res => res.json())
-            // .then(data => {
-            
-            // })
-            setCreatedUserEmail(email);
-
             const destination = location?.state?.from?.pathname || '/';
-            if(token){
-                AddToTokenDb(token);
-                navigate(destination, {replace: true})
-            }
+            setUser(userCredential.user);
+            fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res => res.json())
+            .then(data => {
 
+                if(data?.accessToken){
+
+                    AddToTokenDb(data?.accessToken);
+                    navigate(destination, {replace: true})
+                }
+            })
+            // setCreatedUserEmail(email);
 
         })
         .catch((error) => {
@@ -268,9 +267,11 @@ const useFirebase = () => {
 
 
     useEffect(()=>{
+
         fetch('http://localhost:5000/user/contact')
         .then(res => res.json())
         .then(data => setUserMail(data));
+        
     },[])
 
 

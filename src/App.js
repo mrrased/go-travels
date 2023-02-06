@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DashBooking from './Component/Dashboard/Booking/DashBooking';
 import Dashboard from './Component/Dashboard/Dashboard';
 import DashboardHome from './Component/Dashboard/DashboardHome/DashboardHome';
+import SIngleVeiw from './Component/Dashboard/DashboardHome/UsersMessage/SIngleVeiw';
 import UsersMessage from './Component/Dashboard/DashboardHome/UsersMessage/UsersMessage';
 import Employee from './Component/Dashboard/Employee/Employee';
 import InfoDash from './Component/Dashboard/InfoDash/InfoDash';
@@ -40,6 +41,7 @@ function App() {
               <Route path='/dashboard/info' element={<AdminRoute><InfoDash /></AdminRoute>} />
               <Route path='/dashboard/settings' element={<AdminRoute><SettingsSide /></AdminRoute>} />
               <Route path='/dashboard/users-message' element={<AdminRoute><UsersMessage /></AdminRoute>} />
+              <Route path='/dashboard/users-message/:singleId' element={<AdminRoute><SIngleVeiw /></AdminRoute>} />
 
             </Route> 
             

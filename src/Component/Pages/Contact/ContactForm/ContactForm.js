@@ -18,20 +18,22 @@ const ContactForm = () => {
     const handleSubmit = e =>{
         e.preventDefault();
 
-        // const message  = { name, email, subject, number, messages }
-
-        // console.log(message);
-
         if(!user.email){
             toast.error('Plaese first login then message')
             return;
         }
         else{
-            userMessage(name, email, subject, number, messages);
+            let date = new Date().toLocaleString();
+
+            const input = { name, email, subject, number, messages, date }
+
+            userMessage( input );
             setButtonDisabled(true);
             
         }
     }
+
+    // console.log(new Date().toLocaleString())
 
     return (
         <Container maxWidth='lg' className='pt-10 md:pt-20 pb-10 md:pb-20'>
@@ -158,7 +160,7 @@ const ContactForm = () => {
                                 justify-center 
                                 md:justify-start'
                         >
-                        <button type='submit' class="group relative h-12 w-48 overflow-hidden border border-smooth-yellow rounded-lg bg-white text-lg font-semibold shadow" disabled={buttonDisabled} >
+                        <button type='submit' className="group relative h-12 w-48 overflow-hidden border border-smooth-yellow rounded-lg bg-white text-lg font-semibold shadow" disabled={buttonDisabled} >
                             <div class="absolute inset-0 w-0 bg-smooth-yellow-100 transition-all duration-500 ease-out group-hover:w-full"></div>
                             <span class="relative text-black group-hover:text-white uppercase"><div className='flex items-center justify-center'>{ isLoading ? <CirclesWithBar className="text-center" height="40" width="40" color="#ffa903" wrapperStyle={{}} wrapperClass="" visible={true} outerCircleColor="" innerCircleColor="" barColor=""ariaLabel='circles-with-bar-loading' /> : "Submit Now"}</div></span>
                         </button>

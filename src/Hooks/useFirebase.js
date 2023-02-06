@@ -150,14 +150,14 @@ const useFirebase = () => {
     useEffect(()=>{
 
             const unSubscribe =  onAuthStateChanged( auth, async( user) => {
-                console.log('search user', user);
+                
                 if (user) {
                     setUser(user);
-                    console.log('call from user', user)
+                    
                 } else {
                     setUser({});
                 }
-                console.log( 'auth call end', isLoading );
+                
                 
             });
             return ()=> unSubscribe;
@@ -190,8 +190,8 @@ const useFirebase = () => {
             setIsRole(data?.isRole);
             setAccessPower(data?.role)
             // setUser(user);
-            console.log( 'user isrole', user )
-            console.log(data)
+            // console.log( 'user isrole', user )
+            // console.log(data)
             
             
         }).finally(()=>{
@@ -228,9 +228,7 @@ const useFirebase = () => {
     // }
 
     // user contact message area start
-    const userMessage = ( name, email, subject, number, messages ) =>{
-
-        const message  = { name, email, subject, number, messages }
+    const userMessage = ( message ) =>{
 
         setIsLoading(true);
 

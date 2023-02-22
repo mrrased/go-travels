@@ -24,18 +24,14 @@ const SIngleVeiw = () => {
         fetch(`http://localhost:5000/singleView/${singleId}`)
         .then(res => res.json())
         .then(data => {
-
             setSingleData(data)
-
             fetch('http://localhost:5000/seen',{
-
                 method: 'PUT',
                 headers:{
                     'content-type' : 'application/json'
                 },
                 body: JSON.stringify(data)
             }).then()
-            
         }).finally(()=>{ setIsLoading(0) })
         // .then(res => res.json())
         // .then(data => {

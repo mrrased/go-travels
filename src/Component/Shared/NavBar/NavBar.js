@@ -1,38 +1,38 @@
-import React from 'react';
-import { NavLink , useNavigate } from 'react-router-dom';
-import Pages from '../../Pages/Pages/Pages';
-import { faCaretDown , faPlane} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import useAuth from '../../../Hooks/useAuth';
-
+import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import Pages from "../../Pages/Pages/Pages";
+import { faCaretDown, faPlane } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useAuth from "../../../Hooks/useAuth";
 
 const NavBar = () => {
-    const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef(null);
-    const { user, logOutUser, isRole } = useAuth();
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+  const { user, logOutUser, isRole } = useAuth();
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
-    };
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
 
-    return (
-        <div className='absolute w-full z-10'>
-            <div className='flex items-center sm:justify-between mx-5'>
-                <div>
-                    <div classNAme='flex items-center'>
-                        <FontAwesomeIcon icon={faPlane} size="2xl" className='mr-4 text-pink-black bg-smooth-yellow-150 p-2 rounded-full' />
-                    </div>
-                </div>
-                <div className='hidden md:flex space-x-4 text-base font-semibold capitalize font-sans'>
-
-                    { 
-                        isRole && <NavLink 
-                        
-                        to={"/dashboard"} 
-
-                        className='
+  return (
+    <div className="absolute w-full z-10">
+      <div className="hidden md:flex items-center sm:justify-between mx-5">
+        <div>
+          <div classNAme="hidden md:flex items-center">
+            <FontAwesomeIcon
+              icon={faPlane}
+              size="2xl"
+              className="mr-4 text-pink-black bg-smooth-yellow-150 p-2 rounded-full"
+            />
+          </div>
+        </div>
+        <div className="hidden md:flex space-x-4 text-base font-semibold capitalize font-sans">
+          {isRole && (
+            <NavLink
+              to={"/dashboard"}
+              className="
                         px-5 
                         py-3 
                         m-2 
@@ -40,15 +40,15 @@ const NavBar = () => {
                         hover:bg-smooth-yellow-150 
                         hover:text-black 
                         transition-colors 
-                        duration-400'
+                        duration-400"
+            >
+              Dashboard
+            </NavLink>
+          )}
 
-                        >Dashboard</NavLink> 
-                    }
-
-
-                    <NavLink to={"/"} 
-
-                    className='
+          <NavLink
+            to={"/"}
+            className="
                     px-5 
                     py-3 
                     m-2 
@@ -56,72 +56,91 @@ const NavBar = () => {
                     hover:bg-smooth-yellow-150 
                     hover:text-black 
                     transition-colors 
-                    duration-400'
+                    duration-400"
+          >
+            Home
+          </NavLink>
 
-                    >Home</NavLink>
-
-
-                    <NavLink to={"/about"}
-
-                    className='
+          <NavLink
+            to={"/about"}
+            className="
                     px-5 
                     py-3 
                     m-2 
                     text-white 
                     hover:bg-smooth-yellow-150 
-                    hover:text-black'
+                    hover:text-black"
+          >
+            About
+          </NavLink>
 
-                    >About</NavLink>
-                    
-                    <button 
-
-                        ref={anchorRef}
-                        id="composition-button"
-                        aria-controls={open ? 'composition-menu' : undefined}
-                        aria-expanded={open ? 'true' : undefined}
-                        aria-haspopup="true"
-                        onClick={handleToggle}
-
-                        className='
+          <button
+            ref={anchorRef}
+            id="composition-button"
+            aria-controls={open ? "composition-menu" : undefined}
+            aria-expanded={open ? "true" : undefined}
+            aria-haspopup="true"
+            onClick={handleToggle}
+            className="
                         px-5 
                         py-3 
                         m-2
                          text-white
                           hover:bg-smooth-yellow-150
-                           hover:text-black' 
-                        
-                        >Pages <FontAwesomeIcon icon={faCaretDown} size="lg" className='ml-2 text-smooth-gray-50' /></button>
+                           hover:text-black"
+          >
+            Pages{" "}
+            <FontAwesomeIcon
+              icon={faCaretDown}
+              size="lg"
+              className="ml-2 text-smooth-gray-50"
+            />
+          </button>
 
-                    <button 
-
-                    className='
+          <button
+            className="
                     px-5 
                     py-3 
                     m-2 
                     text-white 
                     hover:bg-smooth-yellow-150 
-                    hover:text-black'
+                    hover:text-black"
+          >
+            Blog
+          </button>
 
-                    >Blog</button>
+          <NavLink
+            to={"/contact"}
+            className="px-5 py-3 m-2 text-white hover:bg-smooth-yellow-150 hover:text-black"
+          >
+            Contact
+          </NavLink>
 
+          <button
+            onClick={() => navigate("/register")}
+            className={`px-5 py-3 m-2 drop-shadow-md bg-white hover:bg-smooth-yellow-150 hover:text-black ${
+              user.email ? "hidden" : "block"
+            }`}
+          >
+            register
+          </button>
 
-                    <NavLink to={'/contact'} className='px-5 py-3 m-2 text-white hover:bg-smooth-yellow-150 hover:text-black' >Contact</NavLink>
-
-                    <button onClick={()=> navigate('/register')} className={`px-5 py-3 m-2 drop-shadow-md bg-white hover:bg-smooth-yellow-150 hover:text-black ${user.email ? "hidden" : "block"}`}>register</button>
-
-                    <button onClick={()=> user.email ? logOutUser() : navigate('/login')} className='px-5 py-3 m-2 drop-shadow-md bg-smooth-yellow-150 hover:bg-white hover:text-black'>{`${user.email ? user?.displayName : "Login"}`}</button>
-                </div>
-            </div>
-                {
-                    <Pages
-                        id={"composition-button"}
-                        open={open}
-                        setOpen={setOpen}
-                        anchorRef={anchorRef}
-                    />
-                }
+          <button
+            onClick={() => (user.email ? logOutUser() : navigate("/login"))}
+            className="px-5 py-3 m-2 drop-shadow-md bg-smooth-yellow-150 hover:bg-white hover:text-black"
+          >{`${user.email ? user?.displayName : "Login"}`}</button>
         </div>
-    );
+      </div>
+      {
+        <Pages
+          id={"composition-button"}
+          open={open}
+          setOpen={setOpen}
+          anchorRef={anchorRef}
+        />
+      }
+    </div>
+  );
 };
 
 export default NavBar;

@@ -4,9 +4,18 @@ import Pages from "../../Pages/Pages/Pages";
 import { faCaretDown, faPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAuth from "../../../Hooks/useAuth";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import MobileNav from "./MobileNav";
 
 const NavBar = () => {
   const [open, setOpen] = React.useState(false);
+  const [anchor, setAnchor] = React.useState();
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
   const anchorRef = React.useRef(null);
   const { user, logOutUser, isRole } = useAuth();
 
@@ -14,6 +23,18 @@ const NavBar = () => {
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
+  };
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    setAnchor(anchor);
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
   };
 
   return (
@@ -139,6 +160,15 @@ const NavBar = () => {
           anchorRef={anchorRef}
         />
       }
+      <div className="lg:hidden">
+        <FormatListBulletedIcon
+          className={`transition-all duration-600 ease-in-out ${
+            state.right === false ? "text-white ml-2 " : "text-[#622243] ml-2"
+          } `}
+          onClick={toggleDrawer("right", true)}
+        />
+      </div>
+      <MobileNav toggleDrawer={toggleDrawer} anchor={anchor} state={state} />
     </div>
   );
 };

@@ -30,6 +30,10 @@ const useFirebase = () => {
   const [isRoleLoading, setIsRoleLoading] = useState(true);
   const [accessPower, setAccessPower] = useState("");
   const [userMail, setUserMail] = useState("");
+  const [open, setOpen] = useState(false);
+  const [serchData, setSearchData] = useState({});
+  const [showFormData, setShowFormData] = useState(false);
+  const [showToData, setShowToData] = useState(false);
   // const [goolePopupRes, setGooglePopupRes] = useState({});
 
   // const [ token ] = useToken(createdUserEmail)
@@ -253,6 +257,14 @@ const useFirebase = () => {
     accessPower,
     userMessage,
     userMail,
+    setOpen,
+    open,
+    setSearchData,
+    serchData,
+    setShowFormData,
+    showFormData,
+    setShowToData,
+    showToData,
   };
 };
 

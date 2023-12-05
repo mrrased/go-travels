@@ -157,17 +157,17 @@ const Booking = () => {
           >
             <StyledTab
               className="w-full sm:w-full md:w-1/4 lg:w-1/4 xl:w-72"
-              label="Air Booking"
+              label="One Way"
               {...a11yProps(0)}
             />
             <StyledTab
               className="w-full sm:w-full md:w-1/4 lg:w-1/4 xl:w-72"
-              label="My Trips"
+              label="Round Trip"
               {...a11yProps(1)}
             />
             <StyledTab
               className="w-full sm:w-full md:w-1/4 lg:w-1/4 xl:w-72"
-              label="Check-In"
+              label="Multi city"
               {...a11yProps(2)}
             />
             <StyledTab
@@ -178,7 +178,6 @@ const Booking = () => {
           </Tabs>
         </Box>
         <ItemTab value={value} index={0}>
-          01
           <ItemsOne />
         </ItemTab>
         <ItemTab value={value} index={1}>

@@ -75,7 +75,7 @@ const TopBanner = () => {
     setIsTop(window.innerWidth > 400 && window.innerWidth <= 435);
   });
 
-  console.log("IsTop", isTop);
+  // console.log("IsTop", isTop);
 
   let settings = {
     dots: false,

@@ -8,33 +8,29 @@ import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import MobileNav from "./MobileNav";
 
 const NavBar = () => {
-  const [open, setOpen] = React.useState(false);
-  const [anchor, setAnchor] = React.useState();
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-  const anchorRef = React.useRef(null);
-  const { user, logOutUser, isRole } = useAuth();
+  // const anchorRef = React.useRef(null);
+  const { user, logOutUser, isRole, setOpen, open } = useAuth();
 
   const navigate = useNavigate();
 
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
+  // const handleToggle = () => {
+  //   setOpen((prevOpen) => !prevOpen);
+  // };
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    setAnchor(anchor);
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
+  // const toggleDrawer = (anchor, open) => (event) => {
+  //   setAnchor(anchor);
+  //   if (
+  //     event.type === "keydown" &&
+  //     (event.key === "Tab" || event.key === "Shift")
+  //   ) {
+  //     return;
+  //   }
 
-    setState({ ...state, [anchor]: open });
+  //   setState({ ...state, [anchor]: open });
+  // };
+
+  const showDrawer = () => {
+    setOpen(true);
   };
 
   return (
@@ -45,7 +41,8 @@ const NavBar = () => {
             <FontAwesomeIcon
               icon={faPlane}
               size="2xl"
-              className="mr-4 text-pink-black bg-smooth-yellow-150 p-2 rounded-full"
+              className="mr-4 text-pink-black bg-smooth-yellow-150 p-2 rounded-full cursor-pointer"
+              onClick={() => navigate("/")}
             />
           </div>
         </div>
@@ -96,12 +93,12 @@ const NavBar = () => {
           </NavLink>
 
           <button
-            ref={anchorRef}
-            id="composition-button"
-            aria-controls={open ? "composition-menu" : undefined}
-            aria-expanded={open ? "true" : undefined}
-            aria-haspopup="true"
-            onClick={handleToggle}
+            // ref={anchorRef}
+            // id="composition-button"
+            // aria-controls={open ? "composition-menu" : undefined}
+            // aria-expanded={open ? "true" : undefined}
+            // aria-haspopup="true"
+            // onClick={handleToggle}
             className="
                         px-5 
                         py-3 
@@ -152,23 +149,23 @@ const NavBar = () => {
           >{`${user.email ? user?.displayName : "Login"}`}</button>
         </div>
       </div>
-      {
+      {/* {
         <Pages
           id={"composition-button"}
           open={open}
           setOpen={setOpen}
           anchorRef={anchorRef}
         />
-      }
+      } */}
       <div className="lg:hidden">
         <FormatListBulletedIcon
-          className={`transition-all duration-600 ease-in-out ${
-            state.right === false ? "text-white ml-2 " : "text-[#622243] ml-2"
-          } `}
-          onClick={toggleDrawer("right", true)}
+          className={`transition-all duration-900 ease-in-out ${
+            open ? "text-[#622243]" : "text-white"
+          }  ml-2`}
+          onClick={showDrawer}
         />
       </div>
-      <MobileNav toggleDrawer={toggleDrawer} anchor={anchor} state={state} />
+      <MobileNav />
     </div>
   );
 };
